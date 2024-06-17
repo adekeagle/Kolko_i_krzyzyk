@@ -55,23 +55,21 @@ public class MainPanel extends JPanel {
     }
 
     private boolean checkGameStatus() {
+        String[][] possibilities = {
+                {"0", "1", "2"}, {"3", "4", "5"}, {"6", "7", "8"},
+                {"0", "3", "6"}, {"1", "4", "7"}, {"2", "5", "8"},
+                {"0", "4", "8"}, {"2", "4", "6"}
+        };
 
-        for (int i = 0; i < buttons.size(); i++) {
-            if (!(buttons.get(0).getText() == "") && buttons.get(0).getText() == buttons.get(1).getText() && buttons.get(1).getText() == buttons.get(2).getText()) {
-                return true;
-            } else if (buttons.get(3).getText() != "" && buttons.get(3).getText() == buttons.get(4).getText() && buttons.get(4).getText() == buttons.get(5).getText()) {
-                return true;
-            } else if (buttons.get(6).getText() != "" && buttons.get(6).getText() == buttons.get(7).getText() && buttons.get(7).getText() == buttons.get(8).getText()) {
-                return true;
-            } else if (buttons.get(0).getText() != "" && buttons.get(0).getText() == buttons.get(3).getText() && buttons.get(3).getText() == buttons.get(6).getText()) {
-                return true;
-            } else if (buttons.get(1).getText() != "" && buttons.get(1).getText() == buttons.get(4).getText() && buttons.get(4).getText() == buttons.get(7).getText()) {
-                return true;
-            } else if (buttons.get(2).getText() != "" && buttons.get(2).getText() == buttons.get(5).getText() && buttons.get(5).getText() == buttons.get(8).getText()) {
-                return true;
-            } else if (buttons.get(0).getText() != "" && buttons.get(0).getText() == buttons.get(4).getText() && buttons.get(4).getText() == buttons.get(8).getText()) {
-                return true;
-            } else if (buttons.get(6).getText() != "" && buttons.get(6).getText() == buttons.get(4).getText() && buttons.get(4).getText() == buttons.get(2).getText()) {
+        for (String[] possibility : possibilities) {
+            int fieldA = Integer.parseInt(possibility[0]);
+            int fieldB = Integer.parseInt(possibility[1]);
+            int fieldC = Integer.parseInt(possibility[2]);
+
+            if (!buttons.get(fieldA).getText().isEmpty() &&
+                    buttons.get(fieldA).getText().equals(buttons.get(fieldB).getText()) &&
+                    buttons.get(fieldB).getText().equals(buttons.get(fieldC).getText())
+            ) {
                 return true;
             }
         }
